@@ -12,7 +12,7 @@ function App() {
     <>
       <Landing />
       <FirstSection />
-      <SecondSection />
+      {/* <SecondSection /> */}
     </>
   );
 }
