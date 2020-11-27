@@ -2,17 +2,16 @@ import React, { useEffect } from 'react';
 import './App.css';
 import Landing from "./components/Landing";
 import FirstSection from "./components/FirstSection";
-// import SecondSection from "./components/SecondSection";
+import SecondSection from "./components/SecondSection";
+import ThirdSection from "./components/ThirdSection";
 
 function App() {
-  useEffect(() => {
-  }, [])
-
   return (
     <>
       <Landing />
       <FirstSection />
-      {/* <SecondSection /> */}
+      <SecondSection />
+      <ThirdSection />
     </>
   );
 }

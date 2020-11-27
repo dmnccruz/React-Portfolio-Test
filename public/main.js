@@ -4,6 +4,19 @@
 //     console.log(`letter ${i} is ${logo[i].getTotalLength()}`);
 // }
 
+setTimeout(function(){ 
+    options = {
+        "cursorOuter": "circle-basic",
+        "hoverEffect": "pointer-overlay",
+        "hoverItemMove": this,
+        "defaultCursor": false,
+        "outerWidth": 10,
+        "outerHeight": 10
+    }
+    magicMouse(options);
+}, 100);
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
     let controller = new ScrollMagic.Controller();
@@ -97,206 +110,298 @@ document.addEventListener('DOMContentLoaded', () => {
 //     .addTo(controller2);
 })
 
-// // THIRD SECTION-------------------------------------------------------------------------
 
-// const certificatesWrapper = document.getElementById('certificatesWrapper')
-// const previousCert = document.getElementById('previousCert')
-// const nextCert = document.getElementById('nextCert')
-// const cert = document.getElementsByClassName('cert')
 
-// cert[0].style.display = 'flex'
+setTimeout(function(){ 
 
-// if(cert.length > 1) {
-//     nextCert.style.display = 'flex'
-// }
+    const previousButton = document.getElementById('previousButton');
+    const nextButton = document.getElementById('nextButton');
+    const projects = document.getElementsByClassName('project');
+    const projectTotal = document.getElementById('projectTotal');
+    const projectNumber = document.getElementById('projectNumber');
 
-// function previousCertificate() {
-//     var i;
-//     nextCert.style.display = 'flex'    
+    function projectsInitialize() {
+        previousButton.style.display = 'none'
 
-//     for (i = 0; i < cert.length; i++) {
-//         if(cert[i].style.display === 'flex') {
-//             cert[i].style.display = 'none'
-//             cert[i - 1].style.display = 'flex'
+        for (i = 0; i < projects.length; i++) {
+            if(i === 0) {
+                projects[i].style.display = 'flex'
+            }
+            else {
+                projects[i].style.display = 'none'
+            }
+        }
 
-//             break
-//         }
-//     }
+        projectTotal.textContent = projects.length
+    }
 
-//     if(cert[0].style.display === 'flex') {
-//         previousCert.style.display = 'none'       
-//     }
-// }
+    projectsInitialize()
 
-// function nextCertificate() {
-//     var i;
-//     previousCert.style.display = 'flex'       
+    nextButton.addEventListener("click", function(){
+        for (i = 0; i < projects.length; i++) {
+            if(projects[i].style.display === 'flex') {
+                projects[i].style.display = 'none'
+                projects[i + 1].style.display = 'flex'
 
-//     for (i = 0; i < cert.length; i++) {
-//         if(cert[i].style.display === 'flex') {
-//             cert[i].style.display = 'none'
-//             cert[i + 1].style.display = 'flex'
+                if(projects[0].style.display === 'none') {
+                    previousButton.style.display = 'flex'
+                }
 
-//             break
-//         }
-//     }
+                if(projects[projects.length - 1].style.display === 'flex') {
+                    nextButton.style.display = 'none'
+                }
 
-//     if(cert[cert.length - 1].style.display === 'flex') {
-//         nextCert.style.display = 'none'       
+                projectNumber.textContent = i + 2
 
-//     }
-// }
+                break;
+            }
+        }
+    })
 
-// function closeCertificates() {
-//     certificatesWrapper.style.display = 'none'
-// }
+    previousButton.addEventListener("click", function(){
+        for (i = 0; i < projects.length; i++) {
+            if(projects[i].style.display === 'flex') {
+                projects[i].style.display = 'none'
+                projects[i - 1].style.display = 'flex'
 
-// function showCertificates() {
-//     certificatesWrapper.style.display = 'flex'
-// }
+                if(projects[0].style.display === 'flex') {
+                    previousButton.style.display = 'none'
+                }
 
-// function closeResume() {
-//     resumeWrapper.style.display = 'none'
-// }
+                if(projects[projects.length - 1].style.display === 'none') {
+                    nextButton.style.display = 'flex'
+                }
 
-// function showResume() {
-//     resumeWrapper.style.display = 'flex'
-// }
+                projectNumber.textContent = i
+                
+                break;
+            }
+        }
+    })
 
-// const resume1 = document.getElementById('resume1')
-// const resume2 = document.getElementById('resume2')
-// const toggleResumeButton = document.getElementById('toggleResume')
-// const downloadPdfWhite = document.getElementById('downloadPdfWhite')
-// const downloadPdfBlack = document.getElementById('downloadPdfBlack')
-// resume1.style.display = 'flex'
-
-// function toggleResume() {
+    const secondSectionContainer = document.getElementById('secondSectionContainer');
+    const bulbContainer = document.getElementById('bulbContainer');
+    const startButton = document.getElementById('startButton');
+    const lightRaySvg = document.getElementById('lightRaySvg');
+    const lightSvg = document.getElementById('lightSvg');
     
-//     if(resume1.style.display === 'flex') {
-//         resume1.style.display = 'none'
-//         resume2.style.display = 'flex'
-//         downloadPdfWhite.style.display = 'flex'
-//         downloadPdfBlack.style.display = 'none'
-//         toggleResumeButton.classList.remove('fa-rotate-180')
-//     }
+    secondSectionContainer.style.display = 'none';
+    
+    startButton.addEventListener("click", function(){
+        lightRaySvg.style.display = 'flex';
+        lightSvg.style.display = 'flex';
+        startButton.style.display = 'none';
+    
+        setTimeout(function(){ 
+            secondSectionContainer.style.display = 'flex';
+            bulbContainer.style.opacity = '.5';
+        }, 1500);
+    })
 
-//     else {
-//         resume1.style.display = 'flex'
-//         resume2.style.display = 'none'
-//         downloadPdfWhite.style.display = 'none'
-//         downloadPdfBlack.style.display = 'flex'
-//         toggleResumeButton.classList.add('fa-rotate-180')
-//     }
-// }
 
-// const mailSvgContainerClosedContainer = document.getElementById('mailSvgContainerClosedContainer')
-// const mailSvgContainerOpenedContainer = document.getElementById('mailSvgContainerOpenedContainer')
-// const stampSvgContainer = document.getElementById('stampSvgContainer')
-// const formContainer = document.getElementById('formContainer')
-// const formContainer2 = document.getElementById('formContainer2')
-// const nameInput = document.getElementById('nameInput')
-// const emailInput = document.getElementById('emailInput')
-// const messageInput = document.getElementById('messageInput')
-// const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-// mailSvgContainerClosedContainer.style.display = 'none';
-// formContainer2.style.display = 'none';
-// stampSvgContainer.style.display = 'none';
+
+
+// THIRD SECTION-------------------------------------------------------------------------
+
+const certificatesWrapper = document.getElementById('certificatesWrapper')
+const previousCert = document.getElementById('previousCert')
+const nextCert = document.getElementById('nextCert')
+const cert = document.getElementsByClassName('cert')
+
+cert[0].style.display = 'flex'
+
+if(cert.length > 1) {
+    nextCert.style.display = 'flex'
+}
+
+previousCert.addEventListener("click", function() {
+    var i;
+    nextCert.style.display = 'flex'    
+
+    for (i = 0; i < cert.length; i++) {
+        if(cert[i].style.display === 'flex') {
+            cert[i].style.display = 'none'
+            cert[i - 1].style.display = 'flex'
+
+            break
+        }
+    }
+
+    if(cert[0].style.display === 'flex') {
+        previousCert.style.display = 'none'       
+    }
+})
+
+nextCert.addEventListener("click", function() {
+    var i;
+    previousCert.style.display = 'flex'       
+
+    for (i = 0; i < cert.length; i++) {
+        if(cert[i].style.display === 'flex') {
+            cert[i].style.display = 'none'
+            cert[i + 1].style.display = 'flex'
+
+            break
+        }
+    }
+
+    if(cert[cert.length - 1].style.display === 'flex') {
+        nextCert.style.display = 'none'       
+
+    }
+})
+
+document.getElementById('showResume').addEventListener("click", function(){
+    resumeWrapper.style.display = 'flex'
+})
+
+document.getElementById('closeResume').addEventListener("click", function(){
+    resumeWrapper.style.display = 'none'
+})
+
+document.getElementById('showCerts').addEventListener("click", function(){
+    certificatesWrapper.style.display = 'flex'
+})
+
+document.getElementById('closeCerts').addEventListener("click", function(){
+    certificatesWrapper.style.display = 'none'
+})
+
+const resume1 = document.getElementById('resume1')
+const resume2 = document.getElementById('resume2')
+const toggleResumeButton = document.getElementById('toggleResume')
+const downloadPdfWhite = document.getElementById('downloadPdfWhite')
+const downloadPdfBlack = document.getElementById('downloadPdfBlack')
+resume1.style.display = 'flex'
+
+toggleResumeButton.addEventListener("click", function(){
+    if(resume1.style.display === 'flex') {
+        resume1.style.display = 'none'
+        resume2.style.display = 'flex'
+        downloadPdfWhite.style.display = 'flex'
+        downloadPdfBlack.style.display = 'none'
+        toggleResumeButton.classList.remove('fa-rotate-180')
+    }
+
+    else {
+        resume1.style.display = 'flex'
+        resume2.style.display = 'none'
+        downloadPdfWhite.style.display = 'none'
+        downloadPdfBlack.style.display = 'flex'
+        toggleResumeButton.classList.add('fa-rotate-180')
+    }})
+
+const mailSvgContainerClosedContainer = document.getElementById('mailSvgContainerClosedContainer')
+const mailSvgContainerOpenedContainer = document.getElementById('mailSvgContainerOpenedContainer')
+const stampSvgContainer = document.getElementById('stampSvgContainer')
+const formContainer = document.getElementById('formContainer')
+const formContainer2 = document.getElementById('formContainer2')
+const nameInput = document.getElementById('nameInput')
+const emailInput = document.getElementById('emailInput')
+const messageInput = document.getElementById('messageInput')
+const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+mailSvgContainerClosedContainer.style.display = 'none';
+formContainer2.style.display = 'none';
+stampSvgContainer.style.display = 'none';
 // console.log('test')
 
-// formContainer.addEventListener('submit', (e) => {
-//     e.preventDefault();
+formContainer.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-//     const nameInput = document.getElementById('nameInput')
-//     const emailInput = document.getElementById('emailInput')
-//     const messageInput = document.getElementById('messageInput')
+    const nameInput = document.getElementById('nameInput')
+    const emailInput = document.getElementById('emailInput')
+    const messageInput = document.getElementById('messageInput')
 
-//     if(nameInput.value !== "" && emailInput.value.match(emailRegex) && messageInput.value !== "") {
+    if(nameInput.value !== "" && emailInput.value.match(emailRegex) && messageInput.value !== "") {
 
 
-//         const formData = new FormData(formContainer);
+        const formData = new FormData(formContainer);
 
-//         fetch(formContainer.getAttribute('action'), {
-//             method: 'POST',
-//             headers: {
-//                 'Accept': 'application/x-www-form-urlencoded;charset=UTF-8',
-//                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-//             },
-//             body: new URLSearchParams(formData).toString()
-//             })
-//             .then(res => {
-//                 console.log('nice');
-//                     nameInput.value = "";
-//                     emailInput.value = "";
-//                     messageInput.value = "";
-//             })
-//             .catch(function (error) {
-//                 console.log(error);
-//         });
+        fetch(formContainer.getAttribute('action'), {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/x-www-form-urlencoded;charset=UTF-8',
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: new URLSearchParams(formData).toString()
+            })
+            .then(res => {
+                console.log('nice');
+                    nameInput.value = "";
+                    emailInput.value = "";
+                    messageInput.value = "";
+            })
+            .catch(function (error) {
+                console.log(error);
+        });
     
-//         formContainer.style.display = 'none';
-//         formContainer2.style.display = 'flex';
-//         stampSvgContainer.style.display = 'flex';
+        formContainer.style.display = 'none';
+        formContainer2.style.display = 'flex';
+        stampSvgContainer.style.display = 'flex';
     
-//         mailSvgContainerClosedContainer.style.display = 'flex';
-//         mailSvgContainerOpenedContainer.style.display = 'none';
+        mailSvgContainerClosedContainer.style.display = 'flex';
+        mailSvgContainerOpenedContainer.style.display = 'none';
     
-//         setTimeout(function(){ 
-//             mailSvgContainerClosedContainer.style.display = 'none';
-//             mailSvgContainerOpenedContainer.style.display = 'flex';
-//             stampSvgContainer.style.display = 'none';
-//             formContainer2.style.display = 'none';
-//             formContainer.style.display = 'flex';
-//         }, 4000);
-//     }
+        setTimeout(function(){ 
+            mailSvgContainerClosedContainer.style.display = 'none';
+            mailSvgContainerOpenedContainer.style.display = 'flex';
+            stampSvgContainer.style.display = 'none';
+            formContainer2.style.display = 'none';
+            formContainer.style.display = 'flex';
+        }, 4000);
+    }
 
-//     else {
+    else {
 
-//         if(nameInput.value === "") {
-//             nameInput.classList.add("formInputRed");
-//             nameInput.setAttribute('placeholder', "may I know your name?");
+        if(nameInput.value === "") {
+            nameInput.classList.add("formInputRed");
+            nameInput.setAttribute('placeholder', "may I know your name?");
 
-//             setTimeout( function(){ 
-//                 nameInput.classList.remove("formInputRed");
-//                 nameInput.setAttribute('placeholder', `who's this?`);
-//             }, 2800);
-//         }
+            setTimeout( function(){ 
+                nameInput.classList.remove("formInputRed");
+                nameInput.setAttribute('placeholder', `who's this?`);
+            }, 2800);
+        }
 
-//         if(emailInput.value === "") {
-//             emailInput.classList.add("formInputRed");
-//             emailInput.setAttribute('placeholder', "what's your email?");
+        if(emailInput.value === "") {
+            emailInput.classList.add("formInputRed");
+            emailInput.setAttribute('placeholder', "what's your email?");
 
-//             setTimeout( function(){ 
-//                 emailInput.classList.remove("formInputRed");
-//                 emailInput.setAttribute('placeholder', 'where can I contact you?');
-//             }, 2900);
-//         }
+            setTimeout( function(){ 
+                emailInput.classList.remove("formInputRed");
+                emailInput.setAttribute('placeholder', 'where can I contact you?');
+            }, 2900);
+        }
 
-//         if(!emailInput.value.match(emailRegex) && emailInput.value !== "") {
-//             emailInput.classList.add("formInputRed");
-//             var currentValue = emailInput.value;
-//             emailInput.value = "";
-//             emailInput.setAttribute('placeholder', 'email invalid.');
+        if(!emailInput.value.match(emailRegex) && emailInput.value !== "") {
+            emailInput.classList.add("formInputRed");
+            var currentValue = emailInput.value;
+            emailInput.value = "";
+            emailInput.setAttribute('placeholder', 'email invalid.');
 
-//             setTimeout( function(){ 
-//                 emailInput.value = currentValue;
+            setTimeout( function(){ 
+                emailInput.value = currentValue;
 
-//                 emailInput.classList.remove("formInputRed");
-//                 emailInput.setAttribute('placeholder', 'where can I contact you?');
-//             }, 3100);
-//         }
+                emailInput.classList.remove("formInputRed");
+                emailInput.setAttribute('placeholder', 'where can I contact you?');
+            }, 3100);
+        }
 
-//         if(messageInput.value === "") {
-//             messageInput.classList.add("formInputRed");
-//             messageInput.setAttribute('placeholder', "what's on your mind?");
+        if(messageInput.value === "") {
+            messageInput.classList.add("formInputRed");
+            messageInput.setAttribute('placeholder', "what's on your mind?");
 
-//             setTimeout( function(){ 
-//                 messageInput.classList.remove("formInputRed");
-//                 messageInput.setAttribute('placeholder', "what can I do for you?");
-//             }, 3000);
-//         }
-//     }
-// });
+            setTimeout( function(){ 
+                messageInput.classList.remove("formInputRed");
+                messageInput.setAttribute('placeholder', "what can I do for you?");
+            }, 3000);
+        }
+    }
+});
+
+}, 2000);
 
 const body = document.getElementById('body')
 

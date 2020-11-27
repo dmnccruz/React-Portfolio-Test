@@ -3459,3 +3459,96 @@ stroke-dasharray: 500;
       transform: scale(.65);
   } 
 }
+
+
+body #magicMouseCursor {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  z-index: 99999999999 !important;
+  left: 0;
+  top: 0;
+  background: rgb(235, 235, 235);
+  border: 1px solid black;
+  transition: transform 0.07s, width 0.3s, height 0.3s;
+  pointer-events: none; 
+}
+
+body #magicMouseCursor.cursor-square {
+  border-radius: 0; 
+}
+
+body #magicPointer {
+  height: 70px;
+  width: 70px;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(66, 66, 66, 0.486);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999999999 !important;
+  /* border: 1px solid rgb(0, 0, 0); */
+  /* mix-blend-mode: hue !important; */
+  /* filter:invert(100%); */
+  backdrop-filter: invert(100%);
+  transition: background 0.2s, width 0.2s, height 0.2s, box-shadow 0.2s; 
+};
+
+body #magicPointer.is-hover {
+  background: red; 
+}
+
+body #magicPointer.pointer-blur {
+  height: 50px;
+  width: 50px;
+  background: none;
+  border: 1px solid rgb(194, 31, 31);
+  box-shadow: 0px 0px 15px -5px white; 
+}
+
+body #magicPointer.pointer-overlay {
+  height: 50px;
+  width: 50px;
+  /* mix-blend-mode: difference !important; */
+  /* z-index: 1001 !important; */
+  box-shadow: 0px 0px 15px -5px white; 
+}
+
+body .magic-hover {
+  transition: all 0.2s; 
+}
+
+body .magic-hover:hover {
+  cursor: none; 
+}
+
+@media (min-device-width: 0px) and (max-device-width: 640px) {
+  body #magicMouseCursor {
+      display: none;
+  }
+
+  body #magicMouseCursor.cursor-square {
+      display: none;
+  }
+
+  body #magicPointer {
+      display: none;
+  };
+}
+
+@media (min-device-width: 641px) and (max-device-width: 1025px) {
+  body #magicMouseCursor {
+      display: none;
+  }
+
+  body #magicMouseCursor.cursor-square {
+      display: none;
+  }
+
+  body #magicPointer {
+      display: none;
+  };  
+}
